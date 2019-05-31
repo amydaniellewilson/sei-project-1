@@ -25,7 +25,7 @@ header {
 
 .grid-container {
   display: grid;
-  grid-gap: 30px;
+  grid-gap: 10px;
   grid-template-columns: 300px 100px;
   background-color: #2196F3;
   padding: 10px;
@@ -34,7 +34,6 @@ header {
 .grid-layout {
   background-color: #FFF59B;
   border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 10px;
   text-align: center;
   justify-content: center;
 }
@@ -55,18 +54,30 @@ header {
   height: 620px;
   display: flex;
   flex-wrap: wrap;
+  padding: 10px;
 }
 
 .grid-layout.solution {
   display: flex;
   flex-wrap: wrap;
+  padding: 10px;
+}
+.grid-layout.choices {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 
+.grid-container.hints {
+  display: flex;
+  flex-wrap: wrap;
+}
 .grid-layout.hints {
   display: flex;
   flex-wrap: wrap;
-  width: 100px;
-  height: 620px;
+  width: 60px;
+  height: 60px;
+  align-items: center;
 }
 
 .grid-item.hints {
