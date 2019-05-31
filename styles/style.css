@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: bold;
 }
 
 body {
@@ -19,7 +21,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 30px;
+  font-size: 50px;
   margin: 50px;
 }
 
@@ -42,6 +44,7 @@ header {
   border: 1px solid rgba(0, 0, 0, 0.8);
   width: 60px;
   height: 60px;
+  border-radius: 50%;
 }
 
 .blank {
@@ -90,4 +93,29 @@ header {
   display: flex;
   flex-wrap: wrap;
   height: 140px;
+}
+
+.box-red {
+  background-color: red;
+}
+.box-orange {
+  background-color: orange;
+}
+.box-yellow {
+  background-color: yellow;
+}
+.box-green {
+  background-color: #3EE59C;
+}
+.box-blue {
+  background-color: deepSkyBlue;
+}
+.box-pink {
+  background-color: violet;
+}
+.box-white {
+  background-color: white;
+}
+.box-black {
+  background-color: grey;
 }

@@ -66,6 +66,14 @@ function init() {
     squares.push(square)
     square.innerHTML = i
     gridChoices.appendChild(square)
+    if (i === 0) square.classList.add('box-red')
+    if (i === 1)square.classList.add('box-orange')
+    if (i === 2)square.classList.add('box-yellow')
+    if (i === 3)square.classList.add('box-green')
+    if (i === 4)square.classList.add('box-blue')
+    if (i === 5)square.classList.add('box-pink')
+    if (i === 6)square.classList.add('box-white')
+    if (i === 7)square.classList.add('box-black')
   }
 
   // Grid sqaures for Hints
@@ -142,7 +150,6 @@ function init() {
     square.innerHTML = i
     gridHints10.appendChild(square)
   }
-
 
 }
 
