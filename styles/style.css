@@ -72,7 +72,7 @@ header {
   display: flex;
   flex-wrap: wrap;
 }
-.grid-layout.hints {
+.grid-layout.hints, .grid-layout.hints2, .grid-layout.hints3, .grid-layout.hints4, .grid-layout.hints5, .grid-layout.hints6, .grid-layout.hints7, .grid-layout.hints8, .grid-layout.hints9, .grid-layout.hints10  {
   display: flex;
   flex-wrap: wrap;
   width: 60px;
