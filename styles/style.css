@@ -8,8 +8,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
-  background: #E26069;
+  flex-direction:  column;
+  background: crimson;
 }
 
 html, body {
@@ -21,23 +21,34 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 50px;
-  margin: 50px;
+  font-size: 70px;
+  margin: 25px;
+}
+
+button {
+  margin: 10px;
+  border-radius: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: 30px;
+  justify-content: center;
+  outline: none !important;
 }
 
 .grid-container {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 300px 100px;
-  background-color: #2196F3;
+  background-color: #00CED1;
   padding: 10px;
+  border-radius: 10px;
 }
 
 .grid-layout {
-  background-color: #FFF59B;
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 2px dotted white;
   text-align: center;
   justify-content: center;
+  border-radius: 10px;
 }
 
 .grid-item {
@@ -45,10 +56,11 @@ header {
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  background-color: white;
 }
 
 .blank {
-  background-color: #2196F3;
+  background-color: #00CED1;
   border-width: 0;
 }
 
@@ -87,6 +99,8 @@ header {
   border: 1px solid rgba(0, 0, 0, 0.8);
   width: 20px;
   height: 20px;
+  background-color: black;
+  color: white;
 }
 
 .grid-layout.choices {
@@ -96,26 +110,26 @@ header {
 }
 
 .box-red {
-  background-color: red;
+  background-color: #FF0000;
 }
 .box-orange {
-  background-color: orange;
+  background-color: #FFA500;
 }
 .box-yellow {
-  background-color: yellow;
+  background-color: #FFFF00;
 }
 .box-green {
-  background-color: #3EE59C;
+  background-color: #00FF7F;
 }
 .box-blue {
-  background-color: deepSkyBlue;
+  background-color: #00BFFF;
 }
 .box-pink {
-  background-color: violet;
+  background-color: #EE82EE;
 }
 .box-white {
-  background-color: white;
+  background-color: #FFFFFF;
 }
-.box-black {
-  background-color: grey;
+.box-grey {
+  background-color: #696969;
 }
