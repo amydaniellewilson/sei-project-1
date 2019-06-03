@@ -59,7 +59,8 @@ function init() {
 
     const rand = randColor[Math.floor(Math.random() * randColor.length)]
     playBtn.addEventListener('click', () => {
-      square.style.backgroundColor = rand
+      square.style.backgroundColor =  rand
+      square.classList.add(rand)
       console.log('I am clicking')
     })
   }
@@ -230,12 +231,14 @@ function init() {
   const gridItemHints = document.querySelector('.grid-item.hints')
   console.log(gridItemHints)
 
-  check.addEventListener('click', (event) => {
+  check.addEventListener('click', () => {
     console.log('Check is clicked')
-    if (gridItemMain.className === ('grid-item main 0 box-red')) {
+    if (gridItemMain.className === ('grid-item main 0 box-red') && gridItemSolution.className === ('grid-item solution 0 #FF0000')) {
       gridItemHints.style.backgroundColor = 'white'
       console.log(gridItemHints)
-    } else {console.log('hi')}
+    } else {
+      console.log('hi')
+    }
   })
 }
 
