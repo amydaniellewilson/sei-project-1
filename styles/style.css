@@ -127,9 +127,13 @@ button {
 .box-pink {
   background-color: #EE82EE;
 }
-.box-white {
-  background-color: #FFFFFF;
+.box-purple {
+  background-color: #9932CC;
 }
 .box-grey {
   background-color: #696969;
+}
+
+.box-white {
+  background-color: #FFFFFF;
 }

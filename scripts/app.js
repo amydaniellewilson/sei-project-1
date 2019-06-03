@@ -49,11 +49,13 @@ function init() {
   for (let i = 0; i < widthSolution * heightSolution; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
+    square.classList.add('solution')
+    square.classList.add(i)
     squares.push(square)
     square.innerHTML = i
     gridSolution.appendChild(square)
 
-    const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#FFFFFF', '#696969']
+    const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
 
     const rand = randColor[Math.floor(Math.random() * randColor.length)]
     playBtn.addEventListener('click', () => {
@@ -75,7 +77,7 @@ function init() {
     if (i === 3)square.classList.add('box-green')
     if (i === 4)square.classList.add('box-blue')
     if (i === 5)square.classList.add('box-pink')
-    if (i === 6)square.classList.add('box-white')
+    if (i === 6)square.classList.add('box-purple')
     if (i === 7)square.classList.add('box-grey')
   }
 
@@ -83,6 +85,8 @@ function init() {
   for (let i = 0; i < widthMain * heightMain; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
+    square.classList.add('main')
+    square.classList.add(i)
     squares.push(square)
     square.innerHTML = i
     gridMain.appendChild(square)
@@ -94,7 +98,7 @@ function init() {
     const greenBox = document.querySelector('.grid-item.box-green')
     const blueBox = document.querySelector('.grid-item.box-blue')
     const pinkBox = document.querySelector('.grid-item.box-pink')
-    const whiteBox = document.querySelector('.grid-item.box-white')
+    const purpleBox = document.querySelector('.grid-item.box-purple')
     const greyBox = document.querySelector('.grid-item.box-grey')
 
     // Create event listeners for clicking on colored boxes and then copying to main grid boxes.
@@ -128,9 +132,9 @@ function init() {
         square.classList.add('box-pink')
       })
     })
-    whiteBox.addEventListener('click', () => {
+    purpleBox.addEventListener('click', () => {
       square.addEventListener('click', () => {
-        square.classList.add('box-white')
+        square.classList.add('box-purple')
       })
     })
     greyBox.addEventListener('click', () => {
@@ -138,10 +142,11 @@ function init() {
         square.classList.add('box-grey')
       })
     })
+
   }
 
 
-  // Grid sqaures for Hints
+  // Grid squares for Hints
   for (let i = 0; i < widthHints * heightHints; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item','hints')
@@ -215,7 +220,25 @@ function init() {
     square.innerHTML = i
     gridHints10.appendChild(square)
   }
+
+  // Logic to check if grid-items in main match grid-items in Solution
+  const check = document.querySelector('.check')
+  const gridItemMain = document.querySelector('.grid-item.main')
+  console.log(gridItemMain)
+  const gridItemSolution = document.querySelector('.grid-item.solution')
+  console.log(gridItemSolution)
+  const gridItemHints = document.querySelector('.grid-item.hints')
+  console.log(gridItemHints)
+
+  check.addEventListener('click', (event) => {
+    console.log('Check is clicked')
+    if (gridItemMain.className === ('grid-item main 0 box-red')) {
+      gridItemHints.style.backgroundColor = 'white'
+      console.log(gridItemHints)
+    } else {console.log('hi')}
+  })
 }
+
 
 
 
