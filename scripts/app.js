@@ -1,37 +1,3 @@
-
-
-
-
-
-// function randChoice(limit) {
-//   let i = 0
-//   const randNumber = Math.floor(Math.random() * limit)
-//
-//   let x = randNumber
-//   const y = x + 3
-//   const z =  x + 5
-//   for (i = randNumber; i > 0; i--) {
-//     x = z - y
-//     x = z - y
-//     x = z + y
-//     x = z * y
-//     x = z + y
-//     x = z - y
-//     x = z * y
-//   }
-//   return randNumber + 1
-// }
-//
-// randChoice()
-
-
-
-
-
-
-
-
-
 const widthMain = 4
 const heightMain= 10
 const widthSolution = 4
@@ -133,57 +99,45 @@ function init() {
 
     // Create event listeners for clicking on colored boxes and then copying to main grid boxes.
     redBox.addEventListener('click', () => {
-      const copyRed = redBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyRed, square)
-        console.log('Clicked red!')
+        square.classList.add('box-red')
       })
     })
     orangeBox.addEventListener('click', () => {
-      const copyOrange = orangeBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyOrange, square)
-        console.log('Clicked orange!')
+        square.classList.add('box-orange')
       })
     })
     yellowBox.addEventListener('click', () => {
-      const copyYellow = yellowBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyYellow, square)
+        square.classList.add('box-yellow')
       })
     })
     greenBox.addEventListener('click', () => {
-      const copyGreen = greenBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyGreen, square)
+        square.classList.add('box-green')
       })
     })
     blueBox.addEventListener('click', () => {
-      const copyBlue = blueBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyBlue, square)
+        square.classList.add('box-blue')
       })
     })
     pinkBox.addEventListener('click', () => {
-      const copyPink = pinkBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyPink, square)
+        square.classList.add('box-pink')
       })
     })
     whiteBox.addEventListener('click', () => {
-      const copyWhite = whiteBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyWhite, square)
+        square.classList.add('box-white')
       })
     })
     greyBox.addEventListener('click', () => {
-      const copyGrey = greyBox.cloneNode(true)
       square.addEventListener('click', () => {
-        gridMain.replaceChild(copyGrey, square)
+        square.classList.add('box-grey')
       })
     })
-
-
   }
 
 
