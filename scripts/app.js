@@ -26,6 +26,17 @@ const widthHints10 = 2
 const heightHints10 = 2
 const squares = []
 
+let redBox = null
+let orangeBox = null
+let yellowBox = null
+let greenBox = null
+let blueBox = null
+let pinkBox = null
+let purpleBox = null
+let greyBox = null
+
+let lastClickedIndex = null
+
 
 
 function init() {
@@ -43,6 +54,7 @@ function init() {
   const gridHints9 = document.querySelector('.grid-layout.hints9')
   const gridHints10 = document.querySelector('.grid-layout.hints10')
   const playBtn = document.querySelector('.play')
+  let pickedColors = []
 
 
   // Grid squares for Solution
@@ -56,6 +68,7 @@ function init() {
     gridSolution.appendChild(square)
 
     const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
+    console.log(randColor)
 
     const rand = randColor[Math.floor(Math.random() * randColor.length)]
     playBtn.addEventListener('click', () => {
@@ -93,24 +106,31 @@ function init() {
     gridMain.appendChild(square)
 
     // Creating consts for each box style (color)
-    const redBox = document.querySelector('.grid-item.box-red')
-    const orangeBox = document.querySelector('.grid-item.box-orange')
-    const yellowBox = document.querySelector('.grid-item.box-yellow')
-    const greenBox = document.querySelector('.grid-item.box-green')
-    const blueBox = document.querySelector('.grid-item.box-blue')
-    const pinkBox = document.querySelector('.grid-item.box-pink')
-    const purpleBox = document.querySelector('.grid-item.box-purple')
-    const greyBox = document.querySelector('.grid-item.box-grey')
+    redBox = document.querySelector('.grid-item.box-red')
+    orangeBox = document.querySelector('.grid-item.box-orange')
+    yellowBox = document.querySelector('.grid-item.box-yellow')
+    greenBox = document.querySelector('.grid-item.box-green')
+    blueBox = document.querySelector('.grid-item.box-blue')
+    pinkBox = document.querySelector('.grid-item.box-pink')
+    purpleBox = document.querySelector('.grid-item.box-purple')
+    greyBox = document.querySelector('.grid-item.box-grey')
+
 
     // Create event listeners for clicking on colored boxes and then copying to main grid boxes.
     redBox.addEventListener('click', () => {
       square.addEventListener('click', () => {
         square.classList.add('box-red')
+        square.setAttribute('data-color', 'red')
+        pickedColors.push('red')
+        console.log(pickedColors)
       })
     })
     orangeBox.addEventListener('click', () => {
       square.addEventListener('click', () => {
         square.classList.add('box-orange')
+        square.setAttribute('data-color', 'orange')
+        pickedColors.push('orange')
+        console.log(pickedColors)
       })
     })
     yellowBox.addEventListener('click', () => {
@@ -224,22 +244,34 @@ function init() {
 
   // Logic to check if grid-items in main match grid-items in Solution
   const check = document.querySelector('.check')
-  const gridItemMain = document.querySelector('.grid-item.main')
-  console.log(gridItemMain)
+  const gridItemMain = document.querySelectorAll('.grid-item.main')
   const gridItemSolution = document.querySelector('.grid-item.solution')
   console.log(gridItemSolution)
   const gridItemHints = document.querySelector('.grid-item.hints')
   console.log(gridItemHints)
 
+
+
+  function checkRow() {
+    console.log('check the row now')
+    const arrayToCheck = [gridItemMain[lastClickedIndex], gridItemMain[lastClickedIndex - 3], gridItemMain[lastClickedIndex - 2], gridItemMain[lastClickedIndex - 1]]
+  }
+  checkRow()
+
+
+  console.log(check)
   check.addEventListener('click', () => {
     console.log('Check is clicked')
+    // checkRow()
     if (gridItemMain.className === ('grid-item main 0 box-red') && gridItemSolution.className === ('grid-item solution 0 #FF0000')) {
-      gridItemHints.style.backgroundColor = 'white'
-      console.log(gridItemHints)
+      gridItemHints.style.backgroundColor = 'red'
     } else {
       console.log('hi')
     }
   })
+
+
+
 }
 
 
