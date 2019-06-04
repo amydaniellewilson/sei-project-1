@@ -34,8 +34,9 @@ let blueBox = null
 let pinkBox = null
 let purpleBox = null
 let greyBox = null
+let allBoxes = null
 
-let lastClickedIndex = null
+let lastClickedIndex = 51
 
 
 
@@ -55,6 +56,7 @@ function init() {
   const gridHints10 = document.querySelector('.grid-layout.hints10')
   const playBtn = document.querySelector('.play')
   let pickedColors = []
+  let solutionColors = []
 
 
   // Grid squares for Solution
@@ -68,13 +70,14 @@ function init() {
     gridSolution.appendChild(square)
 
     const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
-    console.log(randColor)
 
     const rand = randColor[Math.floor(Math.random() * randColor.length)]
     playBtn.addEventListener('click', () => {
       square.style.backgroundColor =  rand
       square.classList.add(rand)
-      console.log('I am clicking')
+      console.log(rand)
+      solutionColors.push(rand)
+      console.log(solutionColors)
     })
   }
 
@@ -82,8 +85,8 @@ function init() {
   for (let i = 0; i < widthChoices * heightChoices; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
+    square.classList.add('choices')
     squares.push(square)
-    square.innerHTML = i
     gridChoices.appendChild(square)
     if (i === 0)square.classList.add('box-red')
     if (i === 1)square.classList.add('box-orange')
@@ -99,72 +102,172 @@ function init() {
   for (let i = 0; i < widthMain * heightMain; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
-    square.classList.add('main')
-    square.classList.add(i)
     squares.push(square)
     square.innerHTML = i
     gridMain.appendChild(square)
-
-    // Creating consts for each box style (color)
-    redBox = document.querySelector('.grid-item.box-red')
-    orangeBox = document.querySelector('.grid-item.box-orange')
-    yellowBox = document.querySelector('.grid-item.box-yellow')
-    greenBox = document.querySelector('.grid-item.box-green')
-    blueBox = document.querySelector('.grid-item.box-blue')
-    pinkBox = document.querySelector('.grid-item.box-pink')
-    purpleBox = document.querySelector('.grid-item.box-purple')
-    greyBox = document.querySelector('.grid-item.box-grey')
-
-
-    // Create event listeners for clicking on colored boxes and then copying to main grid boxes.
-    redBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-red')
-        square.setAttribute('data-color', 'red')
-        pickedColors.push('red')
-        console.log(pickedColors)
-      })
-    })
-    orangeBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-orange')
-        square.setAttribute('data-color', 'orange')
-        pickedColors.push('orange')
-        console.log(pickedColors)
-      })
-    })
-    yellowBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-yellow')
-      })
-    })
-    greenBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-green')
-      })
-    })
-    blueBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-blue')
-      })
-    })
-    pinkBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-pink')
-      })
-    })
-    purpleBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-purple')
-      })
-    })
-    greyBox.addEventListener('click', () => {
-      square.addEventListener('click', () => {
-        square.classList.add('box-grey')
-      })
-    })
-
   }
+
+  // Assigning each box style (color)
+  redBox = document.querySelector('.grid-item.box-red')
+  orangeBox = document.querySelector('.grid-item.box-orange')
+  yellowBox = document.querySelector('.grid-item.box-yellow')
+  greenBox = document.querySelector('.grid-item.box-green')
+  blueBox = document.querySelector('.grid-item.box-blue')
+  pinkBox = document.querySelector('.grid-item.box-pink')
+  purpleBox = document.querySelector('.grid-item.box-purple')
+  greyBox = document.querySelector('.grid-item.box-grey')
+  allBoxes = document.querySelectorAll('.grid-item.choices')
+
+
+  // Create event listeners for clicking on colored boxes and then copying to main grid boxes.
+
+  let mainIndex = 48
+  let hintIndex = 88
+
+  function assignColors(e) {
+    if (e.target.classList.contains('box-red')) {
+      squares[mainIndex].classList.add('box-red')
+      squares[mainIndex].setAttribute('data-color', 'red')
+      pickedColors.push('#FF0000')
+    } else if (e.target.classList.contains('box-orange')) {
+      squares[mainIndex].classList.add('box-orange')
+      squares[mainIndex].setAttribute('data-color', 'orange')
+      pickedColors.push('#FFA500')
+    } else if (e.target.classList.contains('box-yellow')) {
+      squares[mainIndex].classList.add('box-yellow')
+      squares[mainIndex].setAttribute('data-color', 'yellow')
+      pickedColors.push('#FFFF00')
+    } else if (e.target.classList.contains('box-green')) {
+      squares[mainIndex].classList.add('box-green')
+      squares[mainIndex].setAttribute('data-color', 'green')
+      pickedColors.push('#00FF7F')
+    } else if (e.target.classList.contains('box-blue')) {
+      squares[mainIndex].classList.add('box-blue')
+      squares[mainIndex].setAttribute('data-color', 'blue')
+      pickedColors.push('#00BFFF')
+    } else if (e.target.classList.contains('box-pink')) {
+      squares[mainIndex].classList.add('box-pink')
+      squares[mainIndex].setAttribute('data-color', 'pink')
+      pickedColors.push('#EE82EE')
+    } else if (e.target.classList.contains('box-purple')) {
+      squares[mainIndex].classList.add('box-purple')
+      squares[mainIndex].setAttribute('data-color', 'purple')
+      pickedColors.push('#9932CC')
+    } else if (e.target.classList.contains('box-grey')) {
+      squares[mainIndex].classList.add('box-grey')
+      squares[mainIndex].setAttribute('data-color', 'grey')
+      pickedColors.push('#696969')
+    }
+    console.log(pickedColors)
+    reassignIndex()
+  }
+
+  console.log(squares)
+
+  function reassignIndex() {
+    if (mainIndex % 4 === 3) {
+      mainIndex -= 7
+      // create and the run check function here. Create somewhere else.
+      // once checked the last thing it should do is clear pickedColors array. pickedColors[]
+      checkRow()
+    } else {
+      mainIndex ++
+    }
+  }
+
+  allBoxes.forEach(box => box.addEventListener('click', assignColors))
+
+  function checkRow() {
+    if (pickedColors[0,1,2,3] === solutionColors[0,1,2,3]) {
+      squares[hintIndex].style.backgroundColor = 'red'
+      squares[hintIndex + 1].style.backgroundColor = 'red'
+      squares[hintIndex + 2].style.backgroundColor = 'red'
+      squares[hintIndex + 3].style.backgroundColor = 'red'
+    } else if (pickedColors[0] === solutionColors[1] || solutionColors[2] || solutionColors[3]) {
+      squares[hintIndex].style.backgroundColor = 'red'
+    }
+  }
+
+  // for (let i = 0; pickedColors.length < i; i++) {
+  //   if (pickedColors[i] !== solutionColors[i]) {
+  //     console.log('matching')
+  //   } else {
+  //     console.log('not matching')
+  //   }
+  // }
+
+
+
+
+
+
+
+
+
+  // redBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-red')
+  //     square.setAttribute('data-color', 'red')
+  //     pickedColors.push('red')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // orangeBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-orange')
+  //     square.setAttribute('data-color', 'orange')
+  //     pickedColors.push('orange')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // yellowBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-yellow')
+  //     square.setAttribute('data-color', 'yellow')
+  //     pickedColors.push('yellow')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // greenBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-green')
+  //     square.setAttribute('data-color', 'green')
+  //     pickedColors.push('green')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // blueBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-blue')
+  //     square.setAttribute('data-color', 'blue')
+  //     pickedColors.push('blue')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // pinkBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-pink')
+  //     square.setAttribute('data-color', 'pink')
+  //     pickedColors.push('pink')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // purpleBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-purple')
+  //     square.setAttribute('data-color', 'purple')
+  //     pickedColors.push('purple')
+  //     console.log(pickedColors)
+  //   })
+  // })
+  // greyBox.addEventListener('click', () => {
+  //   square.addEventListener('click', () => {
+  //     square.classList.add('box-grey')
+  //     square.setAttribute('data-color', 'grey')
+  //     pickedColors.push('grey')
+  //     console.log(pickedColors)
+  //   })
+  // })
 
 
   // Grid squares for Hints
@@ -242,35 +345,29 @@ function init() {
     gridHints10.appendChild(square)
   }
 
-  // Logic to check if grid-items in main match grid-items in Solution
-  const check = document.querySelector('.check')
-  const gridItemMain = document.querySelectorAll('.grid-item.main')
-  const gridItemSolution = document.querySelector('.grid-item.solution')
-  console.log(gridItemSolution)
-  const gridItemHints = document.querySelector('.grid-item.hints')
-  console.log(gridItemHints)
+  // // Logic to check if grid-items in main match grid-items in Solution
+  // const check = document.querySelector('.check')
+  // const gridItemMain = document.querySelectorAll('.grid-item.main')
+  // const gridItemSolution = document.querySelector('.grid-item.solution')
 
 
 
-  function checkRow() {
-    console.log('check the row now')
-    const arrayToCheck = [gridItemMain[lastClickedIndex], gridItemMain[lastClickedIndex - 3], gridItemMain[lastClickedIndex - 2], gridItemMain[lastClickedIndex - 1]]
-  }
-  checkRow()
+  // function checkRow() {
+  //   const arrayToCheck = [gridItemMain[lastClickedIndex], gridItemMain[lastClickedIndex - 3], gridItemMain[lastClickedIndex - 2], gridItemMain[lastClickedIndex - 1]]
+  //   console.log('check row now')
+  // }
 
 
-  console.log(check)
-  check.addEventListener('click', () => {
-    console.log('Check is clicked')
-    // checkRow()
-    if (gridItemMain.className === ('grid-item main 0 box-red') && gridItemSolution.className === ('grid-item solution 0 #FF0000')) {
-      gridItemHints.style.backgroundColor = 'red'
-    } else {
-      console.log('hi')
-    }
-  })
 
-
+  // check.addEventListener('click', () => {
+  //   console.log('Check is clicked')
+  //   // checkRow()
+  //   if (gridItemMain.className === ('grid-item main 0 box-red') && gridItemSolution.className === ('grid-item solution 0 #FF0000')) {
+  //     gridItemHints.style.backgroundColor = 'red'
+  //   } else {
+  //     console.log('hi')
+  //   }
+  // })
 
 }
 
