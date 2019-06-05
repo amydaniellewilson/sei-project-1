@@ -8,7 +8,6 @@ const heightChoices = 2
 const widthHints = 2, heightHints = 2, widthHints2 = 2, heightHints2 = 2, widthHints3 = 2, heightHints3 = 2, widthHints4 = 2, heightHints4 = 2, widthHints5 = 2, heightHints5 = 2, widthHints6 = 2, heightHints6 = 2, widthHints7 = 2, heightHints7 = 2, widthHints8 = 2, heightHints8 = 2, widthHints9 = 2, heightHints9 = 2, widthHints10 = 2, heightHints10 = 2
 const squares = []
 
-// Declaires allBoxes outside of the init function as null. Called again and reassigned to all grid-item choices at the end of the init function.
 let allBoxes = null
 
 // Declares empty arrays for pickedColors and solutionColors. Color is pushed into pickedColors when a color is selected from choices into main grid. Color is pushed into solutionColors when randomColor function is called.
@@ -71,7 +70,7 @@ console.log(squares)
 function reassignIndex() {
   if (mainIndex % 4 === 3) {
     mainIndex -= 7
-    const hintArray = checkRow(pickedColors, solutionColors)
+    checkRow(pickedColors, solutionColors)
     pickedColors = []
     console.log(pickedColors)
   } else {
@@ -98,10 +97,20 @@ function rough(arr1, arr2){
   return counter
 }
 
+// Function to check if no colors match.
+function noMatch(arr1, arr2){
+  let counter = 0
+  arr1.forEach( (value, index) =>{
+    value !== arr2[value] ? counter++ : counter
+  })
+  return counter
+}
+
 // Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array. Plus runs the hintColors function to work out where to place the red or white.
 function checkRow(solution, main){
   const redPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
+  const blackPegs = noMatch(solution,main)
   const hint = []
   for (var i = 0; i < redPegs; i++) {
     hint.push('red')
@@ -113,6 +122,12 @@ function checkRow(solution, main){
     hint.push('white')
     console.log(hint)
     generateWhite()
+    hintColors()
+  }
+  for (var k = 0; k < blackPegs; k++) {
+    hint.push('black')
+    console.log(hint)
+    generateBlack()
     hintColors()
   }
   return hint
@@ -134,6 +149,9 @@ function generateRed() {
 function generateWhite() {
   squares[hintIndex].classList.add('box-white')
 }
+function generateBlack() {
+  squares[hintIndex].classList.add('box-black')
+}
 
 
 
@@ -152,6 +170,7 @@ function init() {
   const gridHints9 = document.querySelector('.grid-layout.hints9')
   const gridHints10 = document.querySelector('.grid-layout.hints10')
   const playBtn = document.querySelector('.play')
+  const resetBtn = document.querySelector('.reset')
 
 
   // Grid squares for Solution + running randomColor function for Solution section.
@@ -168,8 +187,6 @@ function init() {
       if (solutionColors.includes(color)) {
         color = randomColor()
       }
-      let unique = [...new Set(color)]
-      console.log(unique)
 
       square.style.backgroundColor = color
       square.classList.add(color)
@@ -274,6 +291,10 @@ function init() {
   allBoxes = document.querySelectorAll('.grid-item.choices')
 
   allBoxes.forEach(box => box.addEventListener('click', assignColors))
+
+  resetBtn.addEventListener('click', () => {
+    location.reload()
+  })
 }
 
 window.addEventListener('DOMContentLoaded', init)

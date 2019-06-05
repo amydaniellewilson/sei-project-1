@@ -8,13 +8,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction:  column;
-  /* background: crimson; */
-  /* background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/pulp-fiction.png'); */
-  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/mastermind.jpg');
-
-}
-
-html, body {
+  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/color.jpeg');
+  background-size: cover;
   margin: 20px;
   padding: 20px;
 }
@@ -26,6 +21,7 @@ header {
   font-size: 90px;
   font-family: 'Notable', sans-serif;
   color: gold;
+  text-shadow: 2px 2px 4px #000000;
 
 }
 
@@ -37,15 +33,20 @@ button {
   font-size: 30px;
   justify-content: center;
   outline: none !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .grid-container {
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 300px 100px;
-  background-color: #00CED1;
+  background-color: #B0C4DE;
   padding: 10px;
   border-radius: 10px;
+}
+
+.grid-container.main {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .grid-layout {
@@ -65,7 +66,7 @@ button {
 }
 
 .blank {
-  background-color: #00CED1;
+  background-color: #B0C4DE;
   border-width: 0;
 }
 
@@ -91,6 +92,7 @@ button {
 .grid-container.hints {
   display: flex;
   flex-wrap: wrap;
+
 }
 .grid-layout.hints, .grid-layout.hints2, .grid-layout.hints3, .grid-layout.hints4, .grid-layout.hints5, .grid-layout.hints6, .grid-layout.hints7, .grid-layout.hints8, .grid-layout.hints9, .grid-layout.hints10  {
   display: flex;
@@ -142,4 +144,7 @@ button {
 }
 .grid-item.hints.box-white {
   background-color: #FFFFFF;
+}
+.box-white {
+  background-color: #000000;
 }
