@@ -116,6 +116,9 @@ button {
 .box-red {
   background-color: #FF0000;
 }
+.grid-item.hints.box-red {
+  background-color: #FF0000;
+}
 .box-orange {
   background-color: #FFA500;
 }
@@ -137,7 +140,6 @@ button {
 .box-grey {
   background-color: #696969;
 }
-
-.box-white {
+.grid-item.hints.box-white {
   background-color: #FFFFFF;
 }

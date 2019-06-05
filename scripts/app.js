@@ -74,7 +74,6 @@ function reassignIndex() {
     const hintArray = checkRow(pickedColors, solutionColors)
     pickedColors = []
     console.log(pickedColors)
-    hintColors(hintArray)
   } else {
     mainIndex ++
   }
@@ -97,9 +96,9 @@ function rough(arr1, arr2){
     value === arr2[index] ? counter-- : counter
   })
   return counter
-} console.log(rough(pickedColors, solutionColors))
+}
 
-// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array.
+// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array. Plus runs the hintColors function to work out where to place the red or white. 
 function checkRow(solution, main){
   const redPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
@@ -108,16 +107,19 @@ function checkRow(solution, main){
     hint.push('red')
     console.log(hint)
     generateRed()
+    hintColors()
   }
   for (var j = 0; j < whitePegs; j++) {
     hint.push('white')
     console.log(hint)
     generateWhite()
+    hintColors()
   }
   return hint
 }
 
-function hintColors(redAndWhite) {
+// Works out where the red or white should go.
+function hintColors() {
   if (hintIndex % 4 === 3) {
     hintIndex -= 7
   } else {
@@ -125,6 +127,7 @@ function hintColors(redAndWhite) {
   }
 }
 
+// Makes the hints red or white.
 function generateRed() {
   squares[hintIndex].classList.add('box-red')
 }
