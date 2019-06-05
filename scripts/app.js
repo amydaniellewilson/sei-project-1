@@ -1,49 +1,33 @@
+// Tells the for loops within the init function that create the grid how many rows (width) and columns (height) for each grid.
 const widthMain = 4
 const heightMain= 10
 const widthSolution = 4
 const heightSolution = 1
 const widthChoices = 4
 const heightChoices = 2
-const widthHints = 2
-const heightHints = 2
-const widthHints2 = 2
-const heightHints2 = 2
-const widthHints3 = 2
-const heightHints3 = 2
-const widthHints4 = 2
-const heightHints4 = 2
-const widthHints5 = 2
-const heightHints5 = 2
-const widthHints6 = 2
-const heightHints6 = 2
-const widthHints7 = 2
-const heightHints7 = 2
-const widthHints8 = 2
-const heightHints8 = 2
-const widthHints9 = 2
-const heightHints9 = 2
-const widthHints10 = 2
-const heightHints10 = 2
+const widthHints = 2, heightHints = 2, widthHints2 = 2, heightHints2 = 2, widthHints3 = 2, heightHints3 = 2, widthHints4 = 2, heightHints4 = 2, widthHints5 = 2, heightHints5 = 2, widthHints6 = 2, heightHints6 = 2, widthHints7 = 2, heightHints7 = 2, widthHints8 = 2, heightHints8 = 2, widthHints9 = 2, heightHints9 = 2, widthHints10 = 2, heightHints10 = 2
 const squares = []
 
+// Declaires allBoxes outside of the init function as null. Called again and reassigned to all grid-item choices at the end of the init function.
 let allBoxes = null
 
+// Declares empty arrays for pickedColors and solutionColors. Color is pushed into pickedColors when a color is selected from choices into main grid. Color is pushed into solutionColors when randomColor function is called.
 let pickedColors = []
 const solutionColors = []
 
+// Indentifying that the main grid is to start at 48 - bottom left and the hint grid is to start at 88 - top left.
+let mainIndex = 48
+let hintIndex = 88
+
+// Array of colors to be randomly selected by the computer.
 const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
 
+// Function that randomly selects a color from randColor array using Math.random.
 function randomColor(){
   return randColor[Math.floor(Math.random() * randColor.length)]
 }
 
-
-
-// Create event listeners for clicking on colored boxes and then copying to main grid boxes.
-
-let mainIndex = 48
-let hintIndex = 88
-
+// Function for when a grid is clicked that contains the class .box-red .box-orange etc, it adds the class to the correct grid-item (square) in the main grid. It starts at 48 (bottom left) and moves to the right. It does this by calling the reassignIndex funcgtion. It also pushes the color # to the empty array pickedColors and sets an attribute of data-color + red, orange etc.
 function assignColors(e) {
   if (e.target.classList.contains('box-red')) {
     squares[mainIndex].classList.add('box-red')
@@ -83,6 +67,7 @@ function assignColors(e) {
 }
 console.log(squares)
 
+// Function so that each time you select a color for the main grid, it starts at 48 (bottom left) and once it gets to 52 (bottom right, fourth at the end of the line) it knows to go up to the far left of the row up. -7 from the last clicked. It also clears the pickedColors array once all four have been selected for the next round.
 function reassignIndex() {
   if (mainIndex % 4 === 3) {
     mainIndex -= 7
@@ -94,8 +79,6 @@ function reassignIndex() {
     mainIndex ++
   }
 }
-
-
 
 // Function to check if exact match. Checks if the value of array1 is equal to the index of array2 and adds 1 counter for each.
 function exact(arr1, arr2){
@@ -114,9 +97,9 @@ function rough(arr1, arr2){
     value === arr2[index] ? counter-- : counter
   })
   return counter
-}
+} console.log(rough(pickedColors, solutionColors))
 
-// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function.
+// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array.
 function checkRow(solution, main){
   const redPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
@@ -124,13 +107,15 @@ function checkRow(solution, main){
   for (var i = 0; i < redPegs; i++) {
     hint.push('red')
     console.log(hint)
+    generateRed()
   }
   for (var j = 0; j < whitePegs; j++) {
     hint.push('white')
+    console.log(hint)
+    generateWhite()
   }
   return hint
 }
-
 
 function hintColors(redAndWhite) {
   if (hintIndex % 4 === 3) {
@@ -140,8 +125,12 @@ function hintColors(redAndWhite) {
   }
 }
 
-
-
+function generateRed() {
+  squares[hintIndex].classList.add('box-red')
+}
+function generateWhite() {
+  squares[hintIndex].classList.add('box-white')
+}
 
 
 
@@ -161,14 +150,8 @@ function init() {
   const gridHints10 = document.querySelector('.grid-layout.hints10')
   const playBtn = document.querySelector('.play')
 
-  // Assigning each box style (color)
-  allBoxes = document.querySelectorAll('.grid-item.choices')
 
-  allBoxes.forEach(box => box.addEventListener('click', assignColors))
-  console.log(allBoxes)
-
-
-  // Grid squares for Solution
+  // Grid squares for Solution + running randomColor function for Solution section.
   for (let i = 0; i < widthSolution * heightSolution; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
@@ -281,6 +264,10 @@ function init() {
     gridHints10.appendChild(square)
   }
 
+  // Assigning each box style (color)
+  allBoxes = document.querySelectorAll('.grid-item.choices')
+
+  allBoxes.forEach(box => box.addEventListener('click', assignColors))
 }
 
 window.addEventListener('DOMContentLoaded', init)
