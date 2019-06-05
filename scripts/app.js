@@ -98,7 +98,7 @@ function rough(arr1, arr2){
   return counter
 }
 
-// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array. Plus runs the hintColors function to work out where to place the red or white. 
+// Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array. Plus runs the hintColors function to work out where to place the red or white.
 function checkRow(solution, main){
   const redPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
@@ -168,6 +168,9 @@ function init() {
       if (solutionColors.includes(color)) {
         color = randomColor()
       }
+      let unique = [...new Set(color)]
+      console.log(unique)
+
       square.style.backgroundColor = color
       square.classList.add(color)
       console.log(color)
