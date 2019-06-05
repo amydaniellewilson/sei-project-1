@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
   font-family: 'Varela Round', sans-serif;
-  font-weight: bold;
 }
 
 body {
@@ -9,7 +8,10 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction:  column;
-  background: crimson;
+  /* background: crimson; */
+  /* background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/pulp-fiction.png'); */
+  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/mastermind.jpg');
+
 }
 
 html, body {
@@ -21,8 +23,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  font-size: 70px;
-  margin: 25px;
+  font-size: 90px;
+  font-family: 'Notable', sans-serif;
+  color: gold;
+
 }
 
 button {
@@ -52,7 +56,7 @@ button {
 }
 
 .grid-item {
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  /* border: 1px solid rgba(0, 0, 0, 0.8); */
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.40);
   width: 60px;
   height: 60px;
@@ -97,7 +101,6 @@ button {
 }
 
 .grid-item.hints {
-  border: 1px solid rgba(0, 0, 0, 0.8);
   width: 20px;
   height: 20px;
   background-color: black;
