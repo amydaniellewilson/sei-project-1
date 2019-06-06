@@ -219,7 +219,7 @@ function init() {
     gridSolution.appendChild(square)
 
     playBtn.addEventListener('click', () => {
-      audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/theme.mov'
+      audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/theme3.mp4'
       audio.play()
       let color = randomColor()
       if (solutionColors.includes(color)) {
