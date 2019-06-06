@@ -7,8 +7,8 @@ const widthChoices = 4
 const heightChoices = 2
 const widthHints = 2, heightHints = 2, widthHints2 = 2, heightHints2 = 2, widthHints3 = 2, heightHints3 = 2, widthHints4 = 2, heightHints4 = 2, widthHints5 = 2, heightHints5 = 2, widthHints6 = 2, heightHints6 = 2, widthHints7 = 2, heightHints7 = 2, widthHints8 = 2, heightHints8 = 2, widthHints9 = 2, heightHints9 = 2, widthHints10 = 2, heightHints10 = 2
 const squares = []
-
 let allBoxes = null
+let gridItemSolution = null
 
 // Declares empty arrays for pickedColors and solutionColors. Color is pushed into pickedColors when a color is selected from choices into main grid. Color is pushed into solutionColors when randomColor function is called.
 let pickedColors = []
@@ -17,6 +17,7 @@ const solutionColors = []
 // Indentifying that the main grid is to start at 48 - bottom left and the hint grid is to start at 88 - top left.
 let mainIndex = 48
 let hintIndex = 88
+const solutionIndex = 3
 
 // Array of colors to be randomly selected by the computer.
 const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
@@ -163,19 +164,17 @@ function generateBlack() {
   squares[hintIndex].classList.add('box-black')
 }
 
-// Checking for win, revealing colors and window alert to advise of win.
+// Checking for win, revealing colors and window alert to advise of win.The hint.every(peg => peg === 'red') is basically saying that if every item inside hint is equals to red then you win.
 function checkWin() {
-  if (hint.includes('red', 'red', 'red', 'red')) {
-    console.log('win condition met')
-    //   GRIDITEM.classList.remove('CSS cover class')
+  if (hint.every(peg => peg === 'red')) {
+    gridItemSolution.forEach(solution => solution.classList.remove('box-blank'))
 
-    //   window.alert('you win')
-    // } else {
-    //   console.log('win condition not met')
+    console.log('win condition met')
+    window.alert('you win')
+  } else {
+    console.log('win condition not met')
   }
 }
-
-
 
 function init() {
   const gridMain = document.querySelector('.grid-layout.main')
@@ -216,11 +215,14 @@ function init() {
       console.log(color)
       solutionColors.push(color)
       console.log(solutionColors)
-      square.style.backgroundColor = cover
-      square.classList.add(cover)
+      // square.style.backgroundColor = cover
+      square.classList.add('box-blank')
     })
   }
+  gridItemSolution = document.querySelectorAll('.grid-item.solution')
+  console.log(gridItemSolution)
 
+  
   // Grid squares for Choices
   for (let i = 0; i < widthChoices * heightChoices; i++) {
     const square = document.createElement('div')

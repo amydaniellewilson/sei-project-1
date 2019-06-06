@@ -8,7 +8,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction:  column;
-  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/color.jpeg');
+  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/pulp-fiction.png');
   background-size: cover;
   margin: 20px;
   padding: 20px;
@@ -34,6 +34,7 @@ button {
   justify-content: center;
   outline: none !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+  color: #F3140C;
 }
 
 .grid-container {
@@ -150,6 +151,6 @@ button {
   background-color: #000000;
 }
 
-.box-blank {
-  background-color: #B0C4DE;
+.grid-item.solution.box-blank {
+  background-color: #B0C4DE !important;
 }
