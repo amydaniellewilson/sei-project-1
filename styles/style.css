@@ -83,6 +83,7 @@ button {
   flex-wrap: wrap;
   padding: 10px;
 }
+
 .grid-layout.choices {
   display: flex;
   flex-wrap: wrap;
@@ -147,4 +148,8 @@ button {
 }
 .box-black {
   background-color: #000000;
+}
+
+.box-blank {
+  background-color: #B0C4DE;
 }

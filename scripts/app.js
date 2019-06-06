@@ -20,10 +20,15 @@ let hintIndex = 88
 
 // Array of colors to be randomly selected by the computer.
 const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
+const blankColor = ['#B0C4DE']
 
 // Function that randomly selects a color from randColor array using Math.random.
 function randomColor(){
   return randColor[Math.floor(Math.random() * randColor.length)]
+}
+
+function coverColor() {
+  return blankColor
 }
 
 // Function for when a grid is clicked that contains the class .box-red .box-orange etc, it adds the class to the correct grid-item (square) in the main grid. It starts at 48 (bottom left) and moves to the right. It does this by calling the reassignIndex funcgtion. It also pushes the color # to the empty array pickedColors and sets an attribute of data-color + red, orange etc.
@@ -72,6 +77,7 @@ function reassignIndex() {
     mainIndex -= 7
     checkRow(pickedColors, solutionColors)
     pickedColors = []
+    checkWin()
     console.log(pickedColors)
   } else {
     mainIndex ++
@@ -107,11 +113,13 @@ function noMatch(arr1, arr2){
 }
 
 // Function to check both the solution and main. It runs the exact and rough functions and tells redPegs that it is the exact function and whitePegs that it is the rough function. Pushes however many matches either 'red' or 'white' into the hint array. Plus runs the hintColors function to work out where to place the red or white.
+let hint = []
+
 function checkRow(solution, main){
   const redPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
   const blackPegs = noMatch(solution,main)
-  const hint = []
+  hint = []
   for (var i = 0; i < redPegs; i++) {
     hint.push('red')
     console.log(hint)
@@ -155,6 +163,18 @@ function generateBlack() {
   squares[hintIndex].classList.add('box-black')
 }
 
+// Checking for win, revealing colors and window alert to advise of win.
+function checkWin() {
+  if (hint.includes('red', 'red', 'red', 'red')) {
+    console.log('win condition met')
+    //   GRIDITEM.classList.remove('CSS cover class')
+
+    //   window.alert('you win')
+    // } else {
+    //   console.log('win condition not met')
+  }
+}
+
 
 
 function init() {
@@ -186,6 +206,7 @@ function init() {
 
     playBtn.addEventListener('click', () => {
       let color = randomColor()
+      const cover = coverColor()
       if (solutionColors.includes(color)) {
         color = randomColor()
       }
@@ -195,6 +216,8 @@ function init() {
       console.log(color)
       solutionColors.push(color)
       console.log(solutionColors)
+      square.style.backgroundColor = cover
+      square.classList.add(cover)
     })
   }
 
