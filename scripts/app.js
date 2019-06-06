@@ -9,6 +9,7 @@ const widthHints = 2, heightHints = 2, widthHints2 = 2, heightHints2 = 2, widthH
 const squares = []
 let allBoxes = null
 let gridItemSolution = null
+let audio = null
 
 // Declares empty arrays for pickedColors and solutionColors. Color is pushed into pickedColors when a color is selected from choices into main grid. Color is pushed into solutionColors when randomColor function is called.
 let pickedColors = []
@@ -21,15 +22,10 @@ const solutionIndex = 3
 
 // Array of colors to be randomly selected by the computer.
 const randColor = ['#FF0000', '#FFA500', '#FFFF00', '#00FF7F', '#00BFFF', '#EE82EE', '#9932CC', '#696969']
-const blankColor = ['#B0C4DE']
 
 // Function that randomly selects a color from randColor array using Math.random.
 function randomColor(){
   return randColor[Math.floor(Math.random() * randColor.length)]
-}
-
-function coverColor() {
-  return blankColor
 }
 
 // Function for when a grid is clicked that contains the class .box-red .box-orange etc, it adds the class to the correct grid-item (square) in the main grid. It starts at 48 (bottom left) and moves to the right. It does this by calling the reassignIndex funcgtion. It also pushes the color # to the empty array pickedColors and sets an attribute of data-color + red, orange etc.
@@ -74,7 +70,10 @@ console.log(squares)
 
 // Function so that each time you select a color for the main grid, it starts at 48 (bottom left) and once it gets to 52 (bottom right, fourth at the end of the line) it knows to go up to the far left of the row up. -7 from the last clicked. It also clears the pickedColors array once all four have been selected for the next round.
 function reassignIndex() {
-  if (mainIndex % 4 === 3) {
+  if (mainIndex === 15) {
+    checkLoss()
+    checkWin()
+  }  else if (mainIndex % 4 === 3) {
     mainIndex -= 7
     checkRow(pickedColors, solutionColors)
     pickedColors = []
@@ -168,13 +167,28 @@ function generateBlack() {
 function checkWin() {
   if (hint.every(peg => peg === 'red')) {
     gridItemSolution.forEach(solution => solution.classList.remove('box-blank'))
-
     console.log('win condition met')
-    window.alert('you win')
-  } else {
-    console.log('win condition not met')
+    audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/big-brain.mov'
+    audio.play()
+    setTimeout(() => {
+      window.alert('WINNER!')
+    }, 500)
   }
 }
+
+function checkLoss() {
+  if (hint.includes('white', 'black')) {
+    console.log('lost!')
+    audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/zeds-dead.mov'
+    audio.play()
+    setTimeout(() => {
+      window.alert('YOU ARE DEAD!')
+    }, 500)
+  }
+}
+
+
+
 
 function init() {
   const gridMain = document.querySelector('.grid-layout.main')
@@ -192,6 +206,7 @@ function init() {
   const gridHints10 = document.querySelector('.grid-layout.hints10')
   const playBtn = document.querySelector('.play')
   const resetBtn = document.querySelector('.reset')
+  audio = document.querySelector('#audio')
 
 
   // Grid squares for Solution + running randomColor function for Solution section.
@@ -204,8 +219,9 @@ function init() {
     gridSolution.appendChild(square)
 
     playBtn.addEventListener('click', () => {
+      audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/theme.mov'
+      audio.play()
       let color = randomColor()
-      const cover = coverColor()
       if (solutionColors.includes(color)) {
         color = randomColor()
       }
@@ -219,10 +235,11 @@ function init() {
       square.classList.add('box-blank')
     })
   }
+  //Redefining gridItemSolution as the solution boxes.
   gridItemSolution = document.querySelectorAll('.grid-item.solution')
   console.log(gridItemSolution)
 
-  
+
   // Grid squares for Choices
   for (let i = 0; i < widthChoices * heightChoices; i++) {
     const square = document.createElement('div')
@@ -244,9 +261,12 @@ function init() {
   for (let i = 0; i < widthMain * heightMain; i++) {
     const square = document.createElement('div')
     square.classList.add('grid-item')
+    square.classList.add('main', i)
     squares.push(square)
     gridMain.appendChild(square)
   }
+
+
 
 
   // Grid squares for Hints
