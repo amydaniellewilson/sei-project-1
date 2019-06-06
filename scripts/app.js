@@ -100,7 +100,7 @@ function rough(arr1, arr2){
 // Function to check if no colors match.
 function noMatch(arr1, arr2){
   let counter = 0
-  arr1.forEach( (value, index) =>{
+  arr1.forEach( (value) =>{
     value !== arr2[value] ? counter++ : counter
   })
   return counter
@@ -125,10 +125,12 @@ function checkRow(solution, main){
     hintColors()
   }
   for (var k = 0; k < blackPegs; k++) {
-    hint.push('black')
-    console.log(hint)
-    generateBlack()
-    hintColors()
+    if (hint.length < 4) {
+      hint.push('black')
+      console.log(hint)
+      generateBlack()
+      hintColors()
+    }
   }
   return hint
 }
