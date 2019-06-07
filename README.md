@@ -19,4 +19,4 @@ There are eight colours to choose from and the player must guess the four colour
 ### How My Game Works
 1. The player presses play which triggers the starting theme from Pulp Fiction to play and generates four random colors at the top of the board. During play, these four colours are covered so the player cannot see. 
 2. The player is to click each colour they think is correct. Everytime they click a colour, it will appear on the board in the relevant place. 
-3. 
+3. Each time the player has selected four colours, the hints panel on the right will alert how many colors are correct, in the correct place and incorrect. A peg will turn red for however many correct colours are in the right place. A peg will turn white for however many colours are correct, but not in the right place. For all colours that are not correct or in the right place, the pegs will stay black. 
