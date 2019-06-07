@@ -187,7 +187,6 @@ function checkWin() {
 
 function checkLoss() {
   if (hint.includes('white', 'black')) {
-    gridItemSolution.forEach(solution => solution.classList.remove('box-blank'))
     console.log('lost!')
     audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/zed2.mp3'
     audio.play()
