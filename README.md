@@ -12,11 +12,14 @@
 * Git
 
 ### The Game
-Mastermind was originally the 1970's boardgame and now has many online versions to be played. It involves the computer picking a random selection of four colours in a certain sequence and hiding these at the top of the board. 
+Mastermind was originally a 1970's boardgame and now has many online versions to be played. It involves the computer picking a random selection of four colours in a certain sequence and hiding these at the top of the board. 
 
 There are eight colours to choose from and the player must guess the four colours used and what sequence they were used in. The computer will never pick two of the same color in this version, so it will always be four different colors. 
 
 The aim of the game is to guess the colour code before the end of the board, the player gets 10 guesses.
+
+## My Game
+I decided to give mine a theme of my favourite movie, Pulp Fiction. It plays the theme song as well as two of the movie's famous quotes when you win or lose. The same also has Mia Wallace and John Travolta dancing in the background and has the Pulp Fiction colour scheme. 
 
 ### How My Game Works
 1. The player presses play which triggers the starting theme from Pulp Fiction to play and generates four random colors at the top of the board. During play, these four colours are covered so the player cannot see. 
