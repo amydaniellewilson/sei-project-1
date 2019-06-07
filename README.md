@@ -27,4 +27,14 @@ The aim of the game is to guess the colour code before the end of the board, the
 
 ### Challenges
 * Getting a start point of how to design the grid was one of the biggest hurdles. I researched on W3 and found a CSS method which I ended up using in combination with Javascript to create my layout.
-* 
+* Preventing the computer from picking doubles.
+* The logic to check for matches was difficult. I ended up making an empty array which the matches, or non-matches were pushed into. The computer was then able to check the array to push colours into the hints section. This took up quite a bit of my time to figure out. 
+
+### Wins
+* Reading back through my code and making comments so I knew that I fully understood everything I had done. 
+* The styling of the page and triggering audio at the right times. 
+
+### Future Features
+* Add difficulty levels where there are less guesses. 
+* Add prettier alerts of winning or losing, rather than just normal window alerts.
+* Add a start page with an instructions and start button options. 
