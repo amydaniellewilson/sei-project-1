@@ -16,7 +16,15 @@ Mastermind was originally the 1970's boardgame and now has many online versions 
 
 There are eight colours to choose from and the player must guess the four colours used and what sequence they were used in. The computer will never pick two of the same color in this version, so it will always be four different colors. 
 
+The aim of the game is to guess the colour code before the end of the board, the player gets 10 guesses.
+
 ### How My Game Works
 1. The player presses play which triggers the starting theme from Pulp Fiction to play and generates four random colors at the top of the board. During play, these four colours are covered so the player cannot see. 
 2. The player is to click each colour they think is correct. Everytime they click a colour, it will appear on the board in the relevant place. 
 3. Each time the player has selected four colours, the hints panel on the right will alert how many colors are correct, in the correct place and incorrect. A peg will turn red for however many correct colours are in the right place. A peg will turn white for however many colours are correct, but not in the right place. For all colours that are not correct or in the right place, the pegs will stay black. 
+4. If the player gets to the top of the board and has not guessed the correct colour, they lose. At this point, a window alert comes up telling the player they are dead and advising them to click the reset button to play again. The 'Zed's Dead' quote from the movie also plays at this point. 
+5. If the player guesses the correct colour code before the 10 guesses are up, a window alert is promted advising them that they have won and telling them to press the reset button to play again. The 'Big Brain on Brett' quote from the movie is played at this point. 
+
+### Challenges
+* Getting a start point of how to design the grid was one of the biggest hurdles. I researched on W3 and found a CSS method which I ended up using in combination with Javascript to create my layout.
+* 
