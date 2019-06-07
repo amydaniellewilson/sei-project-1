@@ -31,34 +31,43 @@ function randomColor(){
 // Function for when a grid is clicked that contains the class .box-red .box-orange etc, it adds the class to the correct grid-item (square) in the main grid. It starts at 48 (bottom left) and moves to the right. It does this by calling the reassignIndex funcgtion. It also pushes the color # to the empty array pickedColors and sets an attribute of data-color + red, orange etc.
 function assignColors(e) {
   if (e.target.classList.contains('box-red')) {
+    if (pickedColors.includes('#FF0000')) return
     squares[mainIndex].classList.add('box-red')
     squares[mainIndex].setAttribute('data-color', 'red')
     pickedColors.push('#FF0000')
   } else if (e.target.classList.contains('box-orange')) {
+    if (pickedColors.includes('#FFA500')) return
     squares[mainIndex].classList.add('box-orange')
     squares[mainIndex].setAttribute('data-color', 'orange')
     pickedColors.push('#FFA500')
   } else if (e.target.classList.contains('box-yellow')) {
+    if (pickedColors.includes('#FFFF00')) return
     squares[mainIndex].classList.add('box-yellow')
     squares[mainIndex].setAttribute('data-color', 'yellow')
     pickedColors.push('#FFFF00')
   } else if (e.target.classList.contains('box-green')) {
+    if (pickedColors.includes('#00FF7F')) return
     squares[mainIndex].classList.add('box-green')
     squares[mainIndex].setAttribute('data-color', 'green')
     pickedColors.push('#00FF7F')
   } else if (e.target.classList.contains('box-blue')) {
+
+    if (pickedColors.includes('#00BFFF')) return
     squares[mainIndex].classList.add('box-blue')
     squares[mainIndex].setAttribute('data-color', 'blue')
     pickedColors.push('#00BFFF')
   } else if (e.target.classList.contains('box-pink')) {
+    if (pickedColors.includes('#EE82EE')) return
     squares[mainIndex].classList.add('box-pink')
     squares[mainIndex].setAttribute('data-color', 'pink')
     pickedColors.push('#EE82EE')
   } else if (e.target.classList.contains('box-purple')) {
+    if (pickedColors.includes('#9932CC')) return
     squares[mainIndex].classList.add('box-purple')
     squares[mainIndex].setAttribute('data-color', 'purple')
     pickedColors.push('#9932CC')
   } else if (e.target.classList.contains('box-grey')) {
+    if (pickedColors.includes('#696969')) return
     squares[mainIndex].classList.add('box-grey')
     squares[mainIndex].setAttribute('data-color', 'grey')
     pickedColors.push('#696969')
@@ -116,12 +125,12 @@ function noMatch(arr1, arr2){
 let hint = []
 
 function checkRow(solution, main){
-  const redPegs = exact(solution,main)
+  const crimsonPegs = exact(solution,main)
   const whitePegs = rough(solution,main)
   const blackPegs = noMatch(solution,main)
   hint = []
-  for (var i = 0; i < redPegs; i++) {
-    hint.push('red')
+  for (var i = 0; i < crimsonPegs; i++) {
+    hint.push('crimson')
     console.log(hint)
     generateRed()
     hintColors()
@@ -154,7 +163,7 @@ function hintColors() {
 
 // Makes the hints red or white.
 function generateRed() {
-  squares[hintIndex].classList.add('box-red')
+  squares[hintIndex].classList.add('box-crimson')
 }
 function generateWhite() {
   squares[hintIndex].classList.add('box-white')
@@ -165,24 +174,25 @@ function generateBlack() {
 
 // Checking for win, revealing colors and window alert to advise of win.The hint.every(peg => peg === 'red') is basically saying that if every item inside hint is equals to red then you win.
 function checkWin() {
-  if (hint.every(peg => peg === 'red')) {
+  if (hint.every(peg => peg === 'crimson')) {
     gridItemSolution.forEach(solution => solution.classList.remove('box-blank'))
     console.log('win condition met')
     audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/big-brain.mov'
     audio.play()
     setTimeout(() => {
-      window.alert('WINNER!')
+      window.alert('WINNER! Press the Reset button to play again!')
     }, 500)
   }
 }
 
 function checkLoss() {
   if (hint.includes('white', 'black')) {
+    gridItemSolution.forEach(solution => solution.classList.remove('box-blank'))
     console.log('lost!')
-    audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/zeds-dead.mov'
+    audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/zed2.mp3'
     audio.play()
     setTimeout(() => {
-      window.alert('YOU ARE DEAD!')
+      window.alert('YOU ARE DEAD! Click the Reset button to try again!')
     }, 500)
   }
 }
@@ -222,7 +232,7 @@ function init() {
       audio.src = '/Users/amydaniellewilson/development/projects/sei-project-1/sounds/theme3.mp4'
       audio.play()
       let color = randomColor()
-      if (solutionColors.includes(color)) {
+      while (solutionColors.includes(color)) {
         color = randomColor()
       }
 
