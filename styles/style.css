@@ -9,7 +9,7 @@ body {
   justify-content: center;
   text-align: center;
   flex-direction:  column;
-  background-image: url('/Users/amydaniellewilson/development/projects/sei-project-1/images/pulpdance.gif');
+  background-image: url('../images/pulpdance.gif');
   background-size: cover;
   margin: 20px;
   padding: 20px;
