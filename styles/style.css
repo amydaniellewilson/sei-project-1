@@ -10,7 +10,7 @@ body {
   text-align: center;
   flex-direction:  column;
   background-image: url('../images/pulpdance.gif');
-  background-size: cover;
+  background-size: contain;
   margin: 20px;
   padding: 20px;
 }
